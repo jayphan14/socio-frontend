@@ -10,16 +10,18 @@ import { themeSettings } from "./theme";
 
 function App() {
   const mode = useSelector((state) => state.mode);
-  const theme = useMemo(() => createTheme(themeSettings(mode)), [theme]);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
 
   return (
     <div className="app">
       <BrowserRouter>
         <CssBaseline>
           <ThemeProvider theme={theme}>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/home" element={<HomePage />} />
-            <Route path="/profile/:userId" element={<ProfilePage />} />
+            <Routes>
+              <Route path="/" element={<LoginPage />} />
+              <Route path="/home" element={<HomePage />} />
+              <Route path="/profile/:userId" element={<ProfilePage />} />
+            </Routes>
           </ThemeProvider>
         </CssBaseline>
       </BrowserRouter>
